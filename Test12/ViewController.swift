@@ -19,6 +19,8 @@ class DynamicString
     //one String argument and returns nothing
     // listener closure
     typealias Listener = String -> Void
+    
+    
     var listener: Listener?
     
     func bind(listener: Listener?)
@@ -36,6 +38,7 @@ class DynamicString
                 print("listener 2", listener)
             }
         }
+    
     //wrapping or boxing of an object
     init(_ v: String)
     {
@@ -144,6 +147,8 @@ class ViewController: UIViewController
         name.value = "Groot"
         print("TextLable",txtLable.text)
         
+        //bind object of DynamicString 
+        //pass argument $0
         name.bind {
             print("--",$0)
         }
@@ -156,6 +161,8 @@ class ViewController: UIViewController
         name.value = "kamble"
         print(txtLable.text)
     }
+    
+    
     @IBAction func ContentModelChanges(sender: AnyObject)
     {
         
@@ -183,6 +190,7 @@ class ViewController: UIViewController
         
         print("Changing VAlue")
         
+        //change values
         conetntModel1.mContentTitle = "MyTitleChange"
         conetntModel1.mContentInfo = "My InfoChange"
         
@@ -193,7 +201,7 @@ class ViewController: UIViewController
         super.viewDidLoad()
         
 
-        
+        print("STring1",string1.value)
         string1.observe { Value in
                         print("hi", (Value))
                         }
@@ -202,7 +210,7 @@ class ViewController: UIViewController
         string2.observe { Value in
                         print("hi", (Value))
                         }
-
+        // bind String to TextField
         string1.bindTo(txt1)
         string2.bindTo(txt2)
        
